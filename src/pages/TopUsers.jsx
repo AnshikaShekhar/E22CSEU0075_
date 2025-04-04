@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import API from "../api"; 
+import API from "../api";
+
 function TopUsers() {
   const [users, setUsers] = useState([]);
 

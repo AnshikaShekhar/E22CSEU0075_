@@ -41,3 +41,14 @@ export const getComments = async (token) => {
   });
   return response.json();
 };
+
+// ✅ Exporting API object as default
+const API = {
+  register,
+  getAuthToken,
+  getUsers,
+  getPosts,
+  getComments,
+};
+
+export default API;

@@ -27,7 +27,7 @@
 
 // export default Feed;
 import { useEffect, useState } from "react";
-import { getPosts } from "../api";
+import API from "../api";
 
 const Feed = () => {
   const [posts, setPosts] = useState([]);
@@ -35,11 +35,12 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchFeed = async () => {
-      const data = await getPosts();
-      if (data.length === 0) {
+      const token = localStorage.getItem("accessToken");
+      const data = await API.getPosts(token);
+      if (!data || data.length === 0) {
         setError("No posts available or failed to load.");
       } else {
-        setPosts(data);
+        setPosts(data.reverse()); // Show latest posts first
       }
     };
     fetchFeed();
@@ -62,4 +63,3 @@ const Feed = () => {
 };
 
 export default Feed;
-
