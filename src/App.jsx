@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import TopUsers from "./pages/TopUsers.jsx";
+// import TrendingPosts from "./pages/TrendingPosts.jsx";
+// import Feed from "./pages/Feed.jsx";
+// import Navbar from "./components/Navbar.jsx";
 
+// function App() {
+//   return (
+//     <Router>
+//       <Navbar />
+//       <Routes>
+//         <Route path="/" element={<Feed />} />
+//         <Route path="/top-users" element={<TopUsers />} />
+//         <Route path="/trending-posts" element={<TrendingPosts />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+import React from "react";
+import Navbar from "./components/Navbar";
+import Feed from "./pages/Feed";
+
+import UsersWithPosts from "./pages/UserswithPosts";
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bg-gray-900 min-h-screen">
+      <Navbar />
+      <div className="py-8">
+        <Feed />
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <h1>Social Media API Data</h1>
+      <UsersWithPosts />
+    </div>
+  );
 }
 
-export default App
+export default App;
+
