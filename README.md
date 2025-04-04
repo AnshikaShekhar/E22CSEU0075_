@@ -1,12 +1,35 @@
-# React + Vite
+# Social Media Analytics
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web application that provides insights into social media activity, including top users, trending posts, and user-specific post analysis.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📊 View trending posts across the platform
+- 👥 Explore top users based on activity
+- 🧵 See posts grouped by user
+- 📰 Personalized feed section
+- 🔐 Token-based authentication for API access
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React.js, Tailwind CSS, Vite
+- **Routing**: React Router
+- **API Handling**: Axios
+- **Backend/API**: Custom endpoints (or external API if applicable)
+
+## 📁 Project Structure
+
+src/ │ ├── components/ # Reusable UI components ├── pages/ # Application pages │ ├── Feed.jsx │ ├── TopUsers.jsx │ ├── TrendingPosts.jsx │ └── UsersWithPosts.jsx ├── api/ # API functions (getUsers, getPosts, etc.) └── App.jsx #
+
+## ⚙️ Getting Started
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AnshikaShekhar/E22CSEU0075_.git
+   cd social-media-analytics
+
+2. Install dependencies:
+   npm install
+3. Start the development Server:
+   npm run dev
+   
