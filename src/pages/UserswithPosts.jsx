@@ -1,46 +1,45 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { getUsers, getPosts } from "../api";
 
 const UsersWithPosts = () => {
   const [users, setUsers] = useState([]);
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get("http://20.244.56.144/evaluation-service/users")
-      .then(response => {
-        setUsers(Object.entries(response.data.users));
-      })
-      .catch(error => console.error("Error fetching users:", error));
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+        const usersData = await getUsers(token);
+        const postsData = await getPosts(token);
+        setUsers(usersData);
+        setPosts(postsData);
+      } catch (err) {
+        setError("Failed to load users or posts.");
+        console.error(err);
+      }
+    };
+    fetchData();
   }, []);
 
-  const fetchPosts = (userId) => {
-    if (!posts[userId]) {
-      axios.get(`http://20.244.56.144/evaluation-service/users/${userId}/posts`)
-        .then(response => {
-          setPosts(prevPosts => ({ ...prevPosts, [userId]: response.data.posts }));
-        })
-        .catch(error => console.error(`Error fetching posts for user ${userId}:`, error));
-    }
-  };
-
   return (
-    <div>
-      <h2>Users and Posts</h2>
-      <div className="users-list">
-        {users.map(([id, name]) => (
-          <div key={id} className="user-card">
-            <h3>{name}</h3>
-            <button onClick={() => fetchPosts(id)}>Show Posts</button>
-            {posts[id] && (
-              <ul className="posts-list">
-                {posts[id].map(post => (
-                  <li key={post.id}>{post.content}</li>
+    <div className="text-white p-6">
+      <h1 className="text-2xl font-bold mb-4">Users and Their Posts</h1>
+      {error && <p className="text-red-500">{error}</p>}
+      <ul>
+        {users.map((user) => (
+          <li key={user.id} className="mb-4">
+            <h2 className="text-xl font-semibold">{user.name}</h2>
+            <ul className="ml-4">
+              {posts
+                .filter((post) => post.userId === user.id)
+                .map((post) => (
+                  <li key={post.id}>📌 {post.title}</li>
                 ))}
-              </ul>
-            )}
-          </div>
+            </ul>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

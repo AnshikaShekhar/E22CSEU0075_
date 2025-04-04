@@ -12,21 +12,20 @@
 
 // export default Navbar;
 
-import React from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+function Navbar() {
   return (
-    <nav className="bg-blue-600 p-4 shadow-lg">
-      <div className="max-w-4xl mx-auto flex justify-between items-center">
-        <h1 className="text-white text-lg font-bold">MyApp</h1>
-        <div className="space-x-4">
-          <a href="#" className="text-white hover:underline">Feed</a>
-          <a href="#" className="text-white hover:underline">Top Users</a>
-          <a href="#" className="text-white hover:underline">Trending Posts</a>
-        </div>
-      </div>
+    <nav className="bg-gray-800 text-white p-4">
+      <ul className="flex gap-4">
+        <li><Link to="/">Feed</Link></li>
+        <li><Link to="/users-posts">Users with Posts</Link></li>
+        <li><Link to="/top-users">Top Users</Link></li>
+        <li><Link to="/trending-posts">Trending Posts</Link></li>
+      </ul>
     </nav>
   );
-};
+}
 
 export default Navbar;
+
